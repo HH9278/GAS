@@ -1,5 +1,5 @@
 function deleteFromSpamFolder() {
-  const spreadsheetId = "1ltnulMmJkpfnMXZ3U0DF9t0urZZjpFraDPakRQ0PmRY";
+  const spreadsheetId = "SSID";
   const spreadsheet = SpreadsheetApp.openById(spreadsheetId);
   const sheet = spreadsheet.getSheetByName("blockedSenders");
 
