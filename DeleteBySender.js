@@ -1,13 +1,26 @@
 function deleteFromSpamFolder() {
-  const blockedSenders = [
-    "test1@test1.ne.jp",
-    "test2@test2.co.jp"
-  ];
+  const spreadsheetId = "1ltnulMmJkpfnMXZ3U0DF9t0urZZjpFraDPakRQ0PmRY";
+  const spreadsheet = SpreadsheetApp.openById(spreadsheetId);
+  const sheet = spreadsheet.getSheetByName("blockedSenders");
 
+  if (!sheet) {
+    throw new Error('シート "blockedSenders" が見つかりません。');
+  }
+
+  const lastRow = sheet.getLastRow();
+
+  const blockedSenders = sheet
+    .getRange(2, 1, Math.max(lastRow - 1, 0), 1)
+    .getValues()
+    .flat()
+    .filter(String);
+
+  Logger.log(blockedSenders);
+  
   const threads = GmailApp.search('in:spam newer_than:7d');
 
   const now = new Date();
-  const oneDayMs = 24 * 60 * 60 * 1000; // 1日（ミリ秒）
+  const oneDayMs = 24 * 60 * 60 * 1000;
 
   for (const thread of threads) {
     const messages = thread.getMessages();
