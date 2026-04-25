@@ -1,9 +1,8 @@
 function deleteFromSpamFolderImmediately() {
   // ここに即削除したい送信元メールアドレスを指定
   const targetEmails = [
-    "t-saeki@r-agent.com",
-    "noreply@lancers.co.jp",
-    "message@salon-ms.jp"
+    "test@test.com",
+    "test@test.co.jp"
   ];
 
   // スパムフォルダ内の直近7日分を検索
